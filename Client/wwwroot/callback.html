@@ -8,12 +8,32 @@
 
     <script type="text/javascript">
         $(function () {
-            new Oidc.UserManager({ response_mode: "query" }).signinRedirectCallback().then(function (user) {
+            var settings = {
+                authority: 'http://localhost:5000',
+                client_id: 'demo-client',
+                redirect_uri: 'http://localhost:5003/callback.html',
+                automaticSilentRenew: true,
+                silent_redirect_uri: 'http://localhost:5003/silent-refresh.html',
+                response_type: 'code',
+                scope: 'openid profile demo-api',
+                loadUserInfo: true,
+                response_mode: "query"
+            };
+            var manager = new Oidc.UserManager(settings);
+
+            manager.signinRedirectCallback().then(function (user) {
 
                 $("#accessToken").append(user.access_token);
                 $("#idToken").append(user.id_token);
             }).catch(function (e) {
                 console.error(e);
+                });
+
+            manager.events.addAccessTokenExpiring(function(){
+                console.log("token expiring...");
+            });
+            manager.events.addSilentRenewError(function(){
+                console.log("ERRRO !" + this.arguments);
             });
         })
     </script>

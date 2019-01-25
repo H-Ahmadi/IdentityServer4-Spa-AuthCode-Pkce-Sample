@@ -13,6 +13,8 @@
                     authority: 'http://localhost:5000',
                     client_id: 'demo-client',
                     redirect_uri: 'http://localhost:5003/callback.html',
+                    automaticSilentRenew: true,
+                    silent_redirect_uri: 'http://localhost:5003/silent-refresh.html',
                     response_type: 'code',
                     scope: 'openid profile demo-api',
                     loadUserInfo: true,

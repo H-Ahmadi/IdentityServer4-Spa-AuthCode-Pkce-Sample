@@ -20,8 +20,13 @@ namespace STS
                     AllowedGrantTypes = GrantTypes.Code,
                     RequirePkce = true,
                     RequireClientSecret = false,
-                    RedirectUris =           { "http://localhost:5003/callback.html" },
+                    RedirectUris =
+                    {
+                        "http://localhost:5003/callback.html",
+                        "http://localhost:5003/silent-refresh.html",
+                    },
                     AllowedCorsOrigins =     { "http://localhost:5003" },
+                    AccessTokenLifetime = 20,
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
