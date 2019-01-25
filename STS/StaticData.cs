@@ -33,6 +33,27 @@ namespace STS
                         IdentityServerConstants.StandardScopes.Profile,
                         "demo-api"
                     }
+                },
+                new Client()
+                {
+                    ClientId = "demo-angular-client",
+                    ClientName = "Demo Angular Client",
+                    AllowedGrantTypes = GrantTypes.Code,
+                    RequirePkce = true,
+                    RequireClientSecret = false,
+                    RedirectUris =
+                    {
+                        "http://localhost:4200/callback",
+                        "http://localhost:4200/assets/silent-refresh.html",
+                    },
+                    AllowedCorsOrigins =     { "http://localhost:4200" },
+                    AccessTokenLifetime = 20,
+                    AllowedScopes =
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "demo-api"
+                    }
                 }
             };
         }
